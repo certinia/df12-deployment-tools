@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project name="ExecAnon">
+	
+<target name="ExecAnon" >
+  <java classname="com.df12.tools.ExecuteAnonymous">
+               <classpath>
+ 		 <path id="axis.classpath">
+		   <fileset dir="../lib">
+			<include name="**/*.jar" />
+		  </fileset>
+		 </path>
+	       </classpath>
+    <arg value="${sf.username}" />
+    <arg value="${sf.password}" />
+    <arg value="${what}" />
+  </java>
+</target>
+
+<target name="ExecAnonScript" >
+
+  <loadfile property="script" srcFile="${what}"/>
+
+  <java classname="com.df12.tools.ExecuteAnonymous">
+               <classpath>
+ 		 <path id="axis.classpath">
+		   <fileset dir="../lib">
+			<include name="**/*.jar" />
+		  </fileset>
+		 </path>
+	       </classpath>
+  
+    <arg value="${sf.username}" />
+    <arg value="${sf.password}" />
+    <arg value="${script}" />
+  </java>
+
+</target>
+
+</project>

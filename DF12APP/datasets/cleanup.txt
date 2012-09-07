@@ -1,0 +1,7 @@
+delete [select id from CustomSetting1__c];
+
+delete [select id from Contact where lastname = 'DF12 Contact'];
+delete [select id from Account where name = 'DF12 Account'];
+
+delete [select id from Contact where lastname like 'DF12 Contact #%'];
+delete [select id from Account where name like 'DF12 Account #%'];

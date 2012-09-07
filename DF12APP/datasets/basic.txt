@@ -1,0 +1,9 @@
+Account a = new Account();
+a.name = 'DF12 Account';
+insert a;
+
+Contact c = new Contact();
+c.LastName = 'DF12 Contact';
+c.AccountId = a.Id;
+insert c;
+

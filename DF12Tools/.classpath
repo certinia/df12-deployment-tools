@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/DATA/ant/apache-ant-1.8.3-bin/apache-ant-1.8.3/lib/ant.jar"/>
+	<classpathentry kind="lib" path="C:/DATA/DF12/df12-deployment-tools/lib/ant-salesforce.jar"/>
+	<classpathentry kind="lib" path="C:/DATA/DF12/df12-deployment-tools/lib/DF12.jar"/>
+	<classpathentry kind="lib" path="C:/DATA/DF12/df12-deployment-tools/lib/axis.jar"/>
+	<classpathentry kind="lib" path="C:/DATA/DF12/df12-deployment-tools/lib/jaxrpc.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

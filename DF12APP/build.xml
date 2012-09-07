@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project name="buildSystem" default="deploy" xmlns:sf="antlib:com.salesforce">
+	
+<taskdef uri="antlib:com.salesforce"
+         resource="com/salesforce/antlib.xml"
+         classpath="../lib/ant-salesforce.jar"/>
+
+<property file="build.properties"/>
+<property environment="env"/>
+
+<import file="../lib/undeploy.xml"/>
+<import file="../lib/deploy.xml"/>
+<import file="../lib/exec_anon.xml"/>
+<import file="../lib/run_tests.xml"/>
+
+<target name="LoadCustomSettings">
+  <antcall target="ExecAnonScript">
+    <param name="what" value="datasets/customSettings.txt" />
+  </antcall>
+</target>
+
+<target name="LoadBasicDataset">
+  <antcall target="ExecAnonScript">
+    <param name="what" value="datasets/basic.txt" />
+  </antcall>
+</target>
+
+<target name="LoadVolumeDataset">
+  <antcall target="ExecAnonScript">
+    <param name="what" value="datasets/volumeTest.txt" />
+  </antcall>
+</target>
+
+<target name="CleanUp">
+  <antcall target="ExecAnonScript">
+    <param name="what" value="datasets/cleanup.txt" />
+  </antcall>
+</target>
+
+<target name="RunEverything">
+  <antcall target="undeploy"/>
+  <antcall target="deploy"/>
+  <antcall target="ExecAnonScript">
+    <param name="what" value="datasets/cleanup.txt" />
+  </antcall>
+  <antcall target="ExecAnonScript">
+    <param name="what" value="datasets/customSettings.txt" />
+  </antcall>
+  <antcall target="ExecAnonScript">
+    <param name="what" value="datasets/volumeTest.txt" />
+  </antcall>
+  <antcall target="RunTests"/>
+</target>
+
+
+</project>

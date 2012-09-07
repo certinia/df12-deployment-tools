@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<project name="RunTests" xmlns:sf="antlib:com.salesforce">
+
+<target name="RunTests" >
+   <record name="RunTest.log" action="start"/>
+   <sf:compileAndTest  username="${sf.username}" password="${sf.password}" serverurl="${sf.server}" >
+    <runTests Alltests="true"/>
+   </sf:compileAndTest>
+   <record name="RunTest.log" action="stop"/>  
+</target>
+
+</project>

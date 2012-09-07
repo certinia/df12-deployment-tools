@@ -1,0 +1,31 @@
+<project name="DF12" default="build.sfdctools" basedir="." >
+
+	<!-- compile WSDL -->
+	<target name="compileWSDL" description="Compiles build tools">
+		<!-- Define Axis Ant tools -->
+		<path id="axis.classpath">
+			<fileset dir="${basedir}/lib">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+		<taskdef resource="axis-tasks.properties" classpathref="axis.classpath"/>
+
+		<!-- Generate Web service stubs via Axis WSDL2Java tool -->
+		<mkdir dir="${basedir}/lib/source"/>
+		<axis-wsdl2java output="${basedir}/lib/source/" all="true" testcase="false" verbose="false" url="file:///${basedir}/lib/apex.wsdl"/>
+		<axis-wsdl2java output="${basedir}/lib/source/" all="true" testcase="false" verbose="false" url="file:///${basedir}/lib/metadata.wsdl"/>
+		<axis-wsdl2java output="${basedir}/lib/source/" all="true" testcase="false" verbose="false" url="file:///${basedir}/lib/partner.wsdl"/>
+		<axis-wsdl2java output="${basedir}/lib/source/" all="true" testcase="false" verbose="false" url="file:///${basedir}/lib/enterprise.wsdl"/>
+		<!-- Compile -->
+		<mkdir dir="${basedir}/lib/classes"/>
+		<javac source="1.6" destdir="${basedir}/lib/classes" debug="on">
+			<src path="${basedir}/lib/source"/>
+			<classpath refid="axis.classpath"/>
+		</javac>
+	
+		 <jar destfile="lib/DF12.jar" basedir="lib/classes"/>
+
+
+	</target>
+
+</project>

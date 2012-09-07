@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project name="deploy" xmlns:sf="antlib:com.salesforce">
+
+<target name="deploy" depends="build,clearPackage"/>
+
+<target name="build" depends="makePackage">
+  <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.server}" zipFile="deploy.zip" maxPoll="2000" pollWaitMillis="10000" rollbackOnError="true" singlePackage="true" allowMissingFiles="false" />
+</target>
+
+<target name="clearPackage">
+  <delete file="deploy.zip" failonerror="false"/>
+</target>
+   
+<target name="makePackage" description="Deploys code local src dir to salesforce org specified in build.properties!" depends="clearPackage">
+  <zip destfile="deploy.zip" update="true">
+    <fileset dir="src" includes="package.xml"/>
+    <fileset dir="src" includes="applications/*.app"/>
+    <fileset dir="src" includes="classes/*.cls,classes/*-meta.xml"/>
+    <fileset dir="src" includes="components/*.component,components/*-meta.xml"/>
+    <fileset dir="src" includes="documents/" excludes=".svn/" />
+    <fileset dir="src" includes="homePageComponents/" excludes=".svn/" />
+    <fileset dir="src" includes="labels/CustomLabels.labels"/>
+    <fileset dir="src" includes="layouts/*.layout"/>
+    <fileset dir="src" includes="objects/*.object"/>
+    <fileset dir="src" includes="pages/*.page,pages/*-meta.xml"/>
+    <fileset dir="src" includes="profiles/"/>
+    <fileset dir="src" includes="remoteSiteSettings/"/>
+    <fileset dir="src" includes="staticresources/*.resource,staticresources/*-meta.xml"/>
+    <fileset dir="src" includes="tabs/*.tab"/>
+    <fileset dir="src" includes="triggers/*.trigger,triggers/*-meta.xml"/>
+    <fileset dir="src" includes="weblinks/"/>
+  </zip>
+</target>
+
+</project>
