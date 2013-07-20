@@ -11,6 +11,8 @@
     * An ant build file used to compile the WSDLs into a java jar file.
 
 
+## Update July 2031
+- Undeploy script update. New component types, deals with fieldsets and related list filters
 
 ## DF12APP -- The reference example
 The DF12APP directory contains an example force.com application.
