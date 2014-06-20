@@ -5,7 +5,7 @@
     * A reference force.com application showing how the tools can be utilized
 * lib
     * Contains the various jar files and Ant XML files that make up the tool
-    * Also includes ant-salesforce.jar, no need to copy this to your local Ant install!
+    * Also includes ant-salesforce.jar (v30.0), no need to copy this to your local Ant install!
 
 ## Update June 2014
 - Removes Case Escalations and Assignments components
