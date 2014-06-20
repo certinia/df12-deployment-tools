@@ -38,7 +38,7 @@ To call the sample [build.xml](https://github.com/financialforcedev/df12-deploym
 
     ant RunEverything -Dsf.username=yourusername -Dsf.password=yourpasswordyourtoken
     
-Or update the build.properties file with your user name, password and token and just run...
+Or update the [build.properties](https://github.com/financialforcedev/df12-deployment-tools/blob/master/DF12APP/build.properties) file with your user name, password and token and just run...
 
     ant RunEverything
 
