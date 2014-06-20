@@ -1,10 +1,11 @@
-# DF12 Deployment Tools
+# Deployment Tools
 
 ## Overview
 * DF12APP   
     * A reference force.com application showing how the tools can be utilized
 * lib
     * Contains the various java jar files, WSDLs, and ant XML files that make up the tool
+    * Also includes ant-salesforce.jar, no need to copy this to your local Ant install!
 
 ## Update June 2014
 - Removes Case Escalations and Assignments components
