@@ -37,6 +37,10 @@ The DF12APP directory contains an example force.com application.
 To call the sample [build.xml](https://github.com/financialforcedev/df12-deployment-tools/blob/master/DF12APP/build.xml) provided, change to the DF12APP directory and run the following command.
 
     ant RunEverything -Dsf.username=yourusername -Dsf.password=yourpasswordyourtoken
+    
+Or update the build.properties file with your user name, password and token and just run...
+
+    ant RunEverything
 
 **NOTE:** This sample build script eventualy ends with test failures, this is intentional to demonstrate the RunTests target
 
