@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
-<project name="undeploy" xmlns:sf="antlib:com.salesforce">
-
- <!--
- * Copyright (c) 2012, FinancialForce.com, inc
+<!--
+ * Copyright (c) 2014, FinancialForce.com, inc
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -26,8 +24,7 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-
-
+<project name="undeploy" xmlns:sf="antlib:com.salesforce">
 
 <target name="undeploy">
 
@@ -51,14 +48,12 @@
  <delete dir="${stage.dir}/deploy" /> 
  <mkdir dir="${stage.dir}/deploy" /> 
  <antcall target="generateDestructiveChanges1"/>
- <taskdef name="deploypurge" classname="com.salesforce.ant.SFDCDeployPurge" classpath="../lib/DF12Tools.jar;../lib/ant-salesforce.jar"/>
- <deploypurge purgeOnDelete="true" username="${sf.username}" password="${sf.password}" serverurl="${sf.server}" deployRoot="${stage.dir}/deploy" singlePackage="true" runAllTests="false" rollbackOnError="false" allowMissingFiles="true" maxPoll="2000" pollWaitMillis="5000"/>
+ <sf:deploy purgeOnDelete="true" username="${sf.username}" password="${sf.password}" serverurl="${sf.server}" deployRoot="${stage.dir}/deploy" singlePackage="true" runAllTests="false" rollbackOnError="false" allowMissingFiles="true" maxPoll="2000" pollWaitMillis="5000"/>
 
  <delete dir="${stage.dir}/deploy" /> 
  <mkdir dir="${stage.dir}/deploy" /> 
  <antcall target="generateDestructiveChanges2"/>
- <taskdef name="deploypurge" classname="com.salesforce.ant.SFDCDeployPurge" classpath="../lib/DF12Tools.jar;../lib/ant-salesforce.jar"/>
- <deploypurge purgeOnDelete="true" username="${sf.username}" password="${sf.password}" serverurl="${sf.server}" deployRoot="${stage.dir}/deploy" singlePackage="true" runAllTests="false" rollbackOnError="false" allowMissingFiles="true" maxPoll="2000" pollWaitMillis="5000"/>
+ <sf:deploy purgeOnDelete="true" username="${sf.username}" password="${sf.password}" serverurl="${sf.server}" deployRoot="${stage.dir}/deploy" singlePackage="true" runAllTests="false" rollbackOnError="false" allowMissingFiles="true" maxPoll="2000" pollWaitMillis="5000"/>
 
  <antcall target="deleteDocuments"/>
 
@@ -100,7 +95,7 @@ update uL;]]>
 <target name="generateEmptyPackage">
 <echo file="${stage.dir}/deploy/package.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-  <version>25.0</version>
+  <version>30.0</version>
 </Package>]]></echo>
 </target>
 
@@ -123,7 +118,7 @@ update uL;]]>
     <members>*</members>
     <name>ApexPage</name>
   </types>
-  <version>25.0</version>
+  <version>30.0</version>
 </Package>]]></echo>
 </target>
 
@@ -227,7 +222,15 @@ update uL;]]>
     <members>*</members>
     <name>CustomPageWebLink</name>
   </types>
-  <version>25.0</version>
+  <types>
+  	<members>*</members>
+  	<name>AssignmentRules</name>
+  </types>
+  <types>
+  	<members>*</members>
+  	<name>EscalationRules</name>
+  </types>	
+  <version>30.0</version>
 </Package>]]></echo>
 </target>
 
@@ -235,7 +238,7 @@ update uL;]]>
 
 <echo file="${stage.dir}/deploy/package.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-  <version>25.0</version>
+  <version>30.0</version>
 </Package>]]></echo>
 
 <echo file="${stage.dir}/deploy/destructiveChanges.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -249,9 +252,23 @@ update uL;]]>
     <param name="objflt"  value="*" />
   </antcall>
 
+  <antcall target="generatePackageMembers">
+    <param name="objtyp"  value="AssignmentRule" />
+    <param name="objext"  value="assignmentRules" />
+    <param name="objdir"  value="assignmentRules" />
+    <param name="objflt"  value="*" />
+  </antcall>
+
+  <antcall target="generatePackageMembers">
+    <param name="objtyp"  value="EscalationRule" />
+    <param name="objext"  value="escalationRules" />
+    <param name="objdir"  value="escalationRules" />
+    <param name="objflt"  value="*" />
+  </antcall>
+
   <antcall target="GeneratePackageMembersStdObjCustomElements1"/>
 
-<echo file="${stage.dir}/deploy/destructiveChanges.xml" append="true"><![CDATA[  <version>25.0</version>
+<echo file="${stage.dir}/deploy/destructiveChanges.xml" append="true"><![CDATA[  <version>30.0</version>
 </Package>]]></echo>
 
 </target>
@@ -261,7 +278,7 @@ update uL;]]>
 
 <echo file="${stage.dir}/deploy/package.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-  <version>25.0</version>
+  <version>30.0</version>
 </Package>]]></echo>
 
 <echo file="${stage.dir}/deploy/destructiveChanges.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -335,7 +352,7 @@ update uL;]]>
 
   <antcall target="GeneratePackageMembersStdObjCustomElements2"/>
 
-<echo file="${stage.dir}/deploy/destructiveChanges.xml" append="true"><![CDATA[  <version>25.0</version>
+<echo file="${stage.dir}/deploy/destructiveChanges.xml" append="true"><![CDATA[  <version>30.0</version>
 </Package>]]></echo>
 
 </target>
@@ -368,7 +385,25 @@ update uL;]]>
    var srcFiles = ds.getIncludedFiles();
    for (i=0; i<srcFiles.length; i++) 
    {
-       var filename = srcFiles[i];
+   	   var filename = srcFiles[i];
+	   if(objtyp == 'AssignmentRule' || objtyp == 'EscalationRule')
+   	   {
+        var file = new File(basedir, filename);
+        var br       = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(file))));
+        while ((line = br.readLine()) != null)   
+        {        	
+            if (line.indexOf('<fullName>') > -1)
+            {
+       		  var objname = filename.substring(0,filename.indexOf("." + objext));       
+	          msg+='<members>'+ objname + '.' + line.substring(line.indexOf('<fullName>') + 10,line.indexOf('</fullName>')) + '</members>\n';
+            }
+        }
+        continue;
+   	   }
+	   if(objtyp == 'CustomApplication' && filename.startsWith('standard'))
+	   	  continue;
+	   if(objtyp == 'CustomApplication' && filename.startsWith('Force_com.app'))
+	   	  continue;
        filename = filename.substring(0,filename.indexOf("." + objext));       
        msg+='<members>' + filename + '</members>\n';
    }
@@ -376,7 +411,7 @@ update uL;]]>
    msg+='</types>\n';
 
    var file = new File('./' + stage + '/deploy/', 'destructiveChanges.xml');
-   echo = buildSystem.createTask("echo");
+   echo = project.createTask("echo");
    echo.setMessage(msg);
    echo.setAppend(true);
    echo.setFile(file);
@@ -470,13 +505,17 @@ update uL;]]>
 
       for (i=0; i<srcFiles.length; i++) 
       {
-
-       
+      
         var filename = srcFiles[i];
+        if( filename == 'SocialPost-Social Post Layout.layout' )
+    		continue;
+        if( filename == 'Global-Global Layout.layout' )
+    		continue;
+        
         var file = new File(basedir, filename);
         var br = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(file))));
 	
-	var bBlock      = false;
+		var bBlock      = false;
         var line        = '';
         var bFilterMode = false;
         var bSkipBlock  = false;
@@ -484,7 +523,7 @@ update uL;]]>
         var storage     = '';
         var BlockType   = '';
         var BlockID     = '';
-	var strEcho     = '';
+		var strEcho     = '';
         while ((line = br.readLine()) != null)   
         {
     
@@ -541,7 +580,7 @@ update uL;]]>
 
         }
         var file2 = new File('./' + stage + '/deploy/layouts/', filename);
-        echo = buildSystem.createTask("echo");
+        echo = project.createTask("echo");
         echo.setMessage(strEcho);
         echo.setFile(file2);
         echo.perform();
@@ -625,7 +664,7 @@ update uL;]]>
        strEchoFldSet+='</types>\n';
 
        var file2 = new File('./' + stage + '/deploy/', 'destructiveChanges.xml');
-       echo = buildSystem.createTask("echo");
+       echo = project.createTask("echo");
        echo.setMessage(strEchoNmFlt+strEchoFldSet);
        echo.setFile(file2);
        echo.setAppend(true);
@@ -748,7 +787,7 @@ update uL;]]>
 
 
        var file2 = new File('./' + stage + '/deploy/', 'destructiveChanges.xml');
-       echo = buildSystem.createTask("echo");
+       echo = project.createTask("echo");
        echo.setMessage(strEchoFld+strEchoWeblink+strEchoListView+strEchoRecType);
        echo.setFile(file2);
        echo.setAppend(true);
@@ -804,7 +843,7 @@ update uL;]]>
        strEcho+='<name>CustomLabel</name>\n';
        strEcho+='</types>\n';
        var file2 = new File('./' + stage + '/deploy/', 'destructiveChanges.xml');
-       echo = buildSystem.createTask("echo");
+       echo = project.createTask("echo");
        echo.setMessage(strEcho);
        echo.setFile(file2);
        echo.setAppend(true);
@@ -816,7 +855,5 @@ update uL;]]>
 ]]>
 </script>
 </target>
-
-
 
 </project>

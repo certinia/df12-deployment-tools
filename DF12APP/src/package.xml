@@ -26,31 +26,6 @@
     </types>
     <types>
         <members>*</members>
-        <members>Account</members>
-        <members>AccountContactRole</members>
-        <members>Activity</members>
-        <members>Asset</members>
-        <members>Campaign</members>
-        <members>CampaignMember</members>
-        <members>Case</members>
-        <members>CaseContactRole</members>
-        <members>Contact</members>
-        <members>ContentVersion</members>
-        <members>Contract</members>
-        <members>ContractContactRole</members>
-        <members>Event</members>
-        <members>Idea</members>
-        <members>Lead</members>
-        <members>Opportunity</members>
-        <members>OpportunityContactRole</members>
-        <members>OpportunityLineItem</members>
-        <members>PartnerRole</members>
-        <members>Product2</members>
-        <members>Site</members>
-        <members>Solution</members>
-        <members>Task</members>
-        <members>User</members>
-        <members>UserLicense</members>
         <name>CustomObject</name>
     </types>
     <types>
