@@ -6,7 +6,7 @@
 * lib
     * Contains the various java jar files, WSDLs, and ant XML files that make up the tool
 
-## Updated June 2014
+## Update June 2014
 - Removes Case Escalations and Assignments components
 - Does not attempt to remove Standard Applications
 - Supports both standard DE orgs (from developer.salesforce.com) and Partner DE orgs
@@ -63,9 +63,8 @@ If you've included all for of the .xml files from the lib folder (as shown in th
 
 ## lib
 The lib folder contains all of the items required to use the deploy tools, including:
-* the 4 ant xml scripts to be included in your build file
-* the 4 WSDL files (which you can update by downloading copies from your own org.  This is especially important for the enterprise.wsdl)
-* the various java jar files needed to support some custom Ant tasks used by the scripts
+* Four Ant xml scripts to be included in your build file
+* Various jar files needed to support some custom Ant tasks used by the scripts
 
 
 
