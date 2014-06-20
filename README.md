@@ -46,7 +46,6 @@ If you've included all for of the .xml files from the lib folder (as shown in th
 * **undeploy**       
     * used to remove all metadata from the org.
     * usage: ant undeploy
-    * Note: This requires a customised ant-salesforce.jar, [vote](https://success.salesforce.com/ideaView?id=08730000000kqeFAAQ) now to have Salesforce support this properly.
 * **deploy**
     * used to deploy the application found in the "src" folder along side of the build.xml
     * usage: ant deploy
