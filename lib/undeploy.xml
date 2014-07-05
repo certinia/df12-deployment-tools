@@ -530,8 +530,10 @@ update uL;]]>
           if (line.indexOf('<customButtons>') > -1){bLine=false;}
 
           if (line.indexOf('<layoutItems>') > -1) {bBlock=false;BlockType='</layoutItems>';BlockID='<field>';bSkipBlock = false;}
+	  if (line.indexOf('<summaryLayoutItems>') > -1) {bBlock=false;BlockType='</summaryLayoutItems>';BlockID='<field>';bSkipBlock = false;}
           if (line.indexOf('<relatedLists>') > -1){bBlock=false;BlockType='</relatedLists>';BlockID='<relatedList>';bSkipBlock = false;}
-
+          if (line.indexOf('<multilineLayoutFields>') > -1){bBlock=false;BlockType='</multilineLayoutFields>';BlockID='<multilineLayoutFields>';bSkipBlock = false;}
+          
           if (line.indexOf('<miniLayout>') > -1){bFilterMode=true;}
           if (line.indexOf('</miniLayout>') > -1){bFilterMode=false;}
 
