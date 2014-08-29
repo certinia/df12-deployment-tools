@@ -230,6 +230,10 @@ update uL;]]>
   	<members>*</members>
   	<name>EscalationRules</name>
   </types>	
+  <types>
+  	<members>*</members>
+  	<name>QuickAction</name>
+  </types>
   <version>30.0</version>
 </Package>]]></echo>
 </target>
@@ -266,6 +270,13 @@ update uL;]]>
     <param name="objflt"  value="*" />
   </antcall>
 
+  <antcall target="generatePackageMembers">
+    <param name="objtyp"  value="QuickAction" />
+    <param name="objext"  value="quickAction" />
+    <param name="objdir"  value="quickActions" />
+    <param name="objflt"  value="*" />
+  </antcall>
+  
   <antcall target="GeneratePackageMembersStdObjCustomElements1"/>
 
 <echo file="${stage.dir}/deploy/destructiveChanges.xml" append="true"><![CDATA[  <version>30.0</version>
