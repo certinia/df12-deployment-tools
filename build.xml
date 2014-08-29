@@ -24,19 +24,19 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<project name="buildSystem" default="deploy" xmlns:sf="antlib:com.salesforce">
+<project name="buildSystem" default="deploy" basedir="." xmlns:sf="antlib:com.salesforce">
 
 	<taskdef uri="antlib:com.salesforce"
 			 resource="com/salesforce/antlib.xml"
-			 classpath="../lib/ant-salesforce.jar"/>
+			 classpath="${basedir}/lib/ant-salesforce.jar"/>
 	
 	<property file="build.properties"/>
 	<property environment="env"/>
 	
-	<import file="../lib/exec_anon.xml"/>
-	<import file="../lib/deploy.xml"/>
-	<import file="../lib/undeploy.xml"/>
-	<import file="../lib/run_tests.xml"/>
+	<import file="${basedir}/lib/exec_anon.xml"/>
+	<import file="${basedir}/lib/deploy.xml"/>
+	<import file="${basedir}/lib/undeploy.xml"/>
+	<import file="${basedir}/lib/run_tests.xml"/>
 	
 	<target name="LoadCustomSettings">
 	  <antcall target="ExecAnonScript">

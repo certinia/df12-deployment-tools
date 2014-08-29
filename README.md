@@ -1,11 +1,15 @@
 # Deployment Tools
 
 ## Overview
-* DF12APP   
+* src, build.xml
     * A reference force.com application showing how the tools can be utilized
 * lib
     * Contains the various jar files and Ant XML files that make up the tool
     * Also includes ant-salesforce.jar (v30.0), no need to copy this to your local Ant install!
+
+## Update August 2014
+- Added support in undeploy for Custom Actions
+- Refactored the sample app and tools to avoid using relative paths and use ${basedir}
 
 ## Update June 2014
 - Removes Case Escalations and Assignments components
@@ -21,9 +25,11 @@ supported!)
 ## Update July 2013
 - Undeploy script update. New component types, deals with fieldsets and related list filters
 
-## DF12APP -- The reference example
-The DF12APP directory contains an example force.com application.
+## The reference example
+The src and datasets directories and build.xml contains an example force.com application.
 
+* **/src**
+    * this directory holds the sample app used in to demonstrate the tools
 * **/datasets**
     * this directory holds some samples of apex scripts used by the "Execute Anonymous" process.
 * **/build.properties**
@@ -34,11 +40,11 @@ The DF12APP directory contains an example force.com application.
     * If you already have a build script for your project, you can simply include the various xml files to add functionality to your build.
     * Note the four include file statements, these include the four basic ant targets covered in the session
 
-To call the sample [build.xml](https://github.com/financialforcedev/df12-deployment-tools/blob/master/DF12APP/build.xml) provided, change to the DF12APP directory and run the following command.
+To call the sample [build.xml](https://github.com/financialforcedev/df12-deployment-tools/blob/master/build.xml) provided, run the following command.
 
     ant RunEverything -Dsf.username=yourusername -Dsf.password=yourpasswordyourtoken
     
-Or update the [build.properties](https://github.com/financialforcedev/df12-deployment-tools/blob/master/DF12APP/build.properties) file with your user name, password and token and just run...
+Or update the [build.properties](https://github.com/financialforcedev/df12-deployment-tools/blob/master/build.properties) file with your user name, password and token and just run...
 
     ant RunEverything
 
