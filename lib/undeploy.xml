@@ -522,7 +522,9 @@ update uL;]]>
     		continue;
         if( filename == 'Global-Global Layout.layout' )
     		continue;
-        
+        if( filename == 'FeedItem-Feed Item Layout.layout' )
+			continue;
+
         var file = new File(basedir, filename);
         var br = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(file))));
 	
