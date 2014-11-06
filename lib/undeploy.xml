@@ -373,7 +373,11 @@ update uL;]]>
 
 <script language="javascript"> 
 <![CDATA[
-   importPackage(java.io);	
+ var version = java.lang.System.getProperty("java.version");
+ if (version.startsWith("1.8.0")) {
+    load("nashorn:mozilla_compat.js");
+ }
+ importPackage(java.io);	
 
  try
  { 
@@ -438,7 +442,11 @@ update uL;]]>
 
 <script language="javascript"> 
 <![CDATA[
-   importPackage(java.io);	
+ var version = java.lang.System.getProperty("java.version");
+ if (version.startsWith("1.8.0")) {
+    load("nashorn:mozilla_compat.js");
+ }
+ importPackage(java.io);
 
  try
  { 
@@ -503,7 +511,11 @@ update uL;]]>
    <script language="javascript"> 
  <![CDATA[
 
-      importPackage(java.io);
+      var version = java.lang.System.getProperty("java.version");
+	  if (version.startsWith("1.8.0")) {
+	 	load("nashorn:mozilla_compat.js");
+	  }
+	  importPackage(java.io);
       var stage  = project.getProperty('stage.dir');
       fs = project.createDataType("fileset");
       fs.setDir( new File("./" + stage + "/layouts/") );
@@ -610,8 +622,11 @@ update uL;]]>
 <![CDATA[
   try
   {
-
-      importPackage(java.io);
+	  var version = java.lang.System.getProperty("java.version");
+	  if (version.startsWith("1.8.0")) {
+		 load("nashorn:mozilla_compat.js");
+	  }
+	  importPackage(java.io);
       var stage  = project.getProperty('stage.dir');
       fs = project.createDataType("fileset");
       fs.setDir( new File("./" + stage + "/objects/") );
@@ -697,8 +712,11 @@ update uL;]]>
 <![CDATA[
   try
   {
-
-      importPackage(java.io);
+	  var version = java.lang.System.getProperty("java.version");
+	  if (version.startsWith("1.8.0")) {
+		 load("nashorn:mozilla_compat.js");
+	  }
+	  importPackage(java.io);
       var stage  = project.getProperty('stage.dir');
       fs = project.createDataType("fileset");
       fs.setDir( new File("./" + stage + "/objects/") );
@@ -820,7 +838,11 @@ update uL;]]>
   try
   {
 
-      importPackage(java.io);
+      var version = java.lang.System.getProperty("java.version");
+	  if (version.startsWith("1.8.0")) {
+		 load("nashorn:mozilla_compat.js");
+	  }
+	  importPackage(java.io);
       var stage  = project.getProperty('stage.dir');
       fs = project.createDataType("fileset");
       fs.setDir( new File("./" + stage + "/labels/") );
