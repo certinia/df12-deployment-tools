@@ -54,6 +54,7 @@
 		<fileset dir="src" includes="tabs/*.tab"/>
 		<fileset dir="src" includes="triggers/*.trigger,triggers/*-meta.xml"/>
 		<fileset dir="src" includes="weblinks/"/>
+		<fileset dir="src" includes="workflows/*.workflow"/>
 	  </zip>
 	</target>
 
