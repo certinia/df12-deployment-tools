@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<!--
+ * Copyright (c) 2014, FinancialForce.com, inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * - Neither the name of the FinancialForce.com, inc nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+ * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- 
+ * January 2015, Koen Wesselman
+ *
+ * Notes:
+ * - Social Post causes certain issues with a deployment, so related Layout + Workflows are excluded. See: https://salesforce.stackexchange.com/questions/2266/parent-entity-failed-to-deploy
+-->
+
+<project name="deloitte" xmlns:sf="antlib:com.salesforce">
+	
+	<property name="stage.dir" value="src"/>
+	<property name="target" value="package.xml"/>
+	
+	<target name="generatePackage">
+		<echo file="${stage.dir}/${target}"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+]]></echo>
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="ApexClass" />
+			<param name="objext"  value="cls" />
+			<param name="objdir"  value="classes" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="ApexComponent" />
+			<param name="objext"  value="component" />
+			<param name="objdir"  value="components" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="ApexPage" />
+			<param name="objext"  value="page" />
+			<param name="objdir"  value="pages" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="ApexTrigger" />
+			<param name="objext"  value="trigger" />
+			<param name="objdir"  value="triggers" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="Community" />
+			<param name="objext"  value="community" />
+			<param name="objdir"  value="communities" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="CustomApplication" />
+			<param name="objext"  value="app" />
+			<param name="objdir"  value="applications" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="CustomObject" />
+			<param name="objext"  value="object" />
+			<param name="objdir"  value="objects" />
+			<param name="objflt"  value="*" />
+		</antcall>
+
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="CustomSite" />
+			<param name="objext"  value="site" />
+			<param name="objdir"  value="sites" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="CustomTab" />
+			<param name="objext"  value="tab" />
+			<param name="objdir"  value="tabs" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="HomePageComponent" />
+			<param name="objext"  value="homePageComponent" />
+			<param name="objdir"  value="homePageComponents" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="HomePageLayout" />
+			<param name="objext"  value="homePageLayout" />
+			<param name="objdir"  value="homePageLayouts" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="Layout" />
+			<param name="objext"  value="layout" />
+			<param name="objdir"  value="layouts" />
+			<param name="objflt"  value="*" />
+			<param name="objexc"  value="*SocialPost*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="PermissionSet" />
+			<param name="objext"  value="permissionsets" />
+			<param name="objdir"  value="permissionset" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="Queue" />
+			<param name="objext"  value="queue" />
+			<param name="objdir"  value="queues" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="RemoteSiteSetting" />
+			<param name="objext"  value="remoteSite" />
+			<param name="objdir"  value="remoteSiteSettings" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="ReportType" />
+			<param name="objext"  value="reporttype" />
+			<param name="objdir"  value="reporttypes" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="Role" />
+			<param name="objext"  value="role" />
+			<param name="objdir"  value="roles" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="StaticResource" />
+			<param name="objext"  value="resource" />
+			<param name="objdir"  value="staticresources" />
+			<param name="objflt"  value="*" />
+		</antcall>
+		
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="Workflow" />
+			<param name="objext"  value="workflow" />
+			<param name="objdir"  value="workflows" />
+			<param name="objflt"  value="*" />
+			<param name="objexc"  value="Reply.workflow,SocialPost.workflow,Question.workflow" />
+		</antcall>
+		
+		<antcall target="generatePackageMembersDocuments" />
+		<antcall target="generatePackageMembersLabels" />		
+
+		<echo file="${stage.dir}/${target}" append="true"><![CDATA[	<version>31.0</version>
+</Package>]]></echo>
+	</target>
+	
+	<target name="generatePackageMembers">
+		<script language="javascript"> 
+			<![CDATA[
+			 var version = java.lang.System.getProperty("java.version");
+			 if (version.startsWith("1.8.0")) {
+				load("nashorn:mozilla_compat.js");
+			 }
+			 importPackage(java.io);	
+
+			 try
+			 { 
+			   var objtyp = project.getProperty('objtyp');
+			   var objext = project.getProperty('objext');
+			   var objdir = project.getProperty('objdir');
+			   var objflt = project.getProperty('objflt');
+			   var objexc = project.getProperty('objexc');
+			   var stage  = project.getProperty('stage.dir');
+			   var target  = project.getProperty('target');
+
+			   var msg = '';
+			   msg+='\t<types>\n';
+
+			   fs = project.createDataType("fileset");
+			   fs.setDir( new File("./" + stage + "/" + objdir  +"/") );
+			   fs.setIncludes(objflt + "." + objext);
+			   fs.setExcludes(objexc);
+			   var basedir  = fs.getDir(project);
+
+			   ds = fs.getDirectoryScanner(project);
+			   var srcFiles = ds.getIncludedFiles();
+			   for (i=0; i<srcFiles.length; i++) 
+			   {
+				   var filename = srcFiles[i];
+				   if(objtyp == 'AssignmentRule' || objtyp == 'EscalationRule')
+				   {
+					var file = new File(basedir, filename);
+					var br       = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(file))));
+					while ((line = br.readLine()) != null)   
+					{        	
+						if (line.indexOf('<fullName>') > -1)
+						{
+						  var objname = filename.substring(0,filename.indexOf("." + objext));       
+						  msg+='<members>'+ objname + '.' + line.substring(line.indexOf('<fullName>') + 10,line.indexOf('</fullName>')) + '</members>\n';
+						}
+					}
+					continue;
+				   }
+				   filename = filename.substring(0,filename.indexOf("." + objext));       
+				   msg+='\t\t<members>' + filename + '</members>\n';
+			   }
+			   msg+='\t\t<name>' + objtyp + '</name>\n';
+			   msg+='\t</types>\n';
+               
+			   if(srcFiles.length > 0){
+			       var file = new File('./' + stage + '/', target);
+			       echo = project.createTask("echo");
+			       echo.setMessage(msg);
+			       echo.setAppend(true);
+			       echo.setFile(file);
+			       echo.perform();
+			   }
+			  }
+			  catch(e){} //Do nothing because folder might not exist, no issue
+			]]>
+		</script>
+	</target>
+
+	<target name="generatePackageMembersDocuments">
+		<script language="javascript"> 
+			<![CDATA[
+			 var version = java.lang.System.getProperty("java.version");
+			 if (version.startsWith("1.8.0")) {
+				load("nashorn:mozilla_compat.js");
+			 }
+			 importPackage(java.io);	
+
+			 try
+			 { 
+			   var stage  = project.getProperty('stage.dir');
+			   var target  = project.getProperty('target');
+
+			   var msg = '';
+			   msg+='\t<types>\n';
+
+			   fs = project.createDataType("fileset");
+			   fs.setDir( new File("./" + stage + "/documents/") );
+			   fs.setIncludes("*");
+			   var basedir  = fs.getDir(project);
+
+			   ds = fs.getDirectoryScanner(project);
+			   var srcDirs = ds.getIncludedDirectories();
+			   
+			   for(i = 0; i < srcDirs.length; i++){
+					msg += '\t\t<members>' + srcDirs[i] + '</members>\n';
+					
+					fs = project.createDataType("fileset");
+					fs.setDir( new File("./" + stage + "/documents/" + srcDirs[i]) );
+					fs.setIncludes("*");
+					fs.setExcludes("*-meta.xml");
+					var basedir  = fs.getDir(project);
+					
+					ds = fs.getDirectoryScanner(project);
+					var srcFiles = ds.getIncludedFiles();
+					for (j=0; j<srcFiles.length; j++) 
+					{
+						msg += '\t\t<members>' + srcDirs[i] + '/' + srcFiles[j] + '</members>\n';
+					}
+			   }
+			   
+			   msg += '\t\t<name>Document</name>\n';
+			   msg += '\t</types>\n';
+			   
+			   var file = new File('./' + stage + '/', target);
+			   echo = project.createTask("echo");
+			   echo.setMessage(msg);
+			   echo.setAppend(true);
+			   echo.setFile(file);
+			   echo.perform();
+			  }
+			  catch(e){} //Do nothing because folder might not exist, no issue
+			]]>
+		</script>
+	</target>
+	
+	<target name="generatePackageMembersLabels">
+		<script language="javascript"> 
+			<![CDATA[
+			  try
+			  {
+
+				  var version = java.lang.System.getProperty("java.version");
+				  if (version.startsWith("1.8.0")) {
+					 load("nashorn:mozilla_compat.js");
+				  }
+				  importPackage(java.io);
+				  var stage  = project.getProperty('stage.dir');
+				  var target  = project.getProperty('target');
+				  fs = project.createDataType("fileset");
+				  fs.setDir( new File("./" + stage + "/labels/") );
+				  fs.setIncludes("CustomLabels.labels");
+				  fs.setExcludes(".svn");
+				  var basedir  = fs.getDir(project);
+				  ds = fs.getDirectoryScanner(project);
+				  var srcFiles = ds.getIncludedFiles();
+
+				  var strEcho  = '';
+				  strEcho+='\n\t<types>\n';
+				  for (i=0; i<srcFiles.length; i++) 
+				  {
+					var filename = srcFiles[i];
+					var file = new File(basedir, filename);
+					var b        = false;
+					var br       = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(file))));
+					while ((line = br.readLine()) != null)   
+					{
+					  if (line.indexOf('<labels>' ) > -1){b=true ;}
+					  if (line.indexOf('</labels>') > -1){b=false;}
+					  if (b==true)
+					  {
+						if (line.indexOf('<fullName>') > -1)
+						{
+						  strEcho+='\t\t<members>'+ line.substring(line.indexOf('<fullName>') + 10,line.indexOf('</fullName>')) + '</members>\n';
+						  b=false;
+						}
+					  }
+					}
+				   }  
+
+				   strEcho+='\t\t<name>CustomLabel</name>\n';
+				   strEcho+='\t</types>\n';
+				   var file2 = new File('./' + stage + '/', target);
+				   echo = project.createTask("echo");
+				   echo.setMessage(strEcho);
+				   echo.setFile(file2);
+				   echo.setAppend(true);
+				   echo.perform();
+				   strEcho='';
+			   } 
+			   catch(e){}
+
+			]]>
+		</script>
+	</target>
+</project>
