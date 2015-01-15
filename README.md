@@ -7,6 +7,9 @@
     * Contains the various jar files and Ant XML files that make up the tool
     * Also includes ant-salesforce.jar (v30.0), no need to copy this to your local Ant install!
 
+## Update January 2015
+- Added automatic package.xml generator	
+	
 ## Update August 2014
 - Added support in undeploy for Custom Actions
 - Refactored the sample app and tools to avoid using relative paths and use ${basedir}
@@ -70,10 +73,13 @@ If you've included all for of the .xml files from the lib folder (as shown in th
 * **RunTests**
     * used to execute all unit tests and outputs the results to a file.
     * usage: ant RunTests
+* **generatePackage**
+    * used to automatically generate the package.xml file based on all files in the stage folder (src).
+    * usage: ant generatePackage
 
 ## lib
 The lib folder contains all of the items required to use the deploy tools, including:
-* Four Ant xml scripts to be included in your build file
+* Five Ant xml scripts to be included in your build file
 * Various jar files needed to support some custom Ant tasks used by the scripts
 
 
