@@ -37,6 +37,7 @@
 	<import file="${basedir}/lib/deploy.xml"/>
 	<import file="${basedir}/lib/undeploy.xml"/>
 	<import file="${basedir}/lib/run_tests.xml"/>
+	<import file="${basedir}/lib/package_generator.xml"/>
 	
 	<target name="LoadCustomSettings">
 	  <antcall target="ExecAnonScript">
