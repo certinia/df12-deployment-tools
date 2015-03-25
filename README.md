@@ -7,6 +7,9 @@
     * Contains the various jar files and Ant XML files that make up the tool
     * Also includes ant-salesforce.jar (v30.0), no need to copy this to your local Ant install!
 
+## Update March 2015
+- Added target for running a list of comma separated tests
+
 ## Update January 2015
 - Added automatic package.xml generator	
 	
@@ -73,6 +76,9 @@ If you've included all for of the .xml files from the lib folder (as shown in th
 * **RunTests**
     * used to execute all unit tests and outputs the results to a file.
     * usage: ant RunTests
+* **RunSpecifiedTests**
+    * used to execute specified unit tests and outputs the results to a file.
+    * usage: ant "-Dtests=FIRSTTEST,SECONDTEST" RunSpecifiedTests
 * **generatePackage**
     * used to automatically generate the package.xml file based on all files in the stage folder (src).
     * usage: ant generatePackage
