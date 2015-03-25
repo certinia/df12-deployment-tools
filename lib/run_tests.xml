@@ -36,4 +36,43 @@
    <record name="RunTest.log" action="stop"/>  
 </target>
 
+<target name="RunSpecifiedTests">
+	<record name="RunTest.log" action="start"/>
+	<script	language="javascript">
+		<![CDATA[
+			var version = java.lang.System.getProperty("java.version");
+			if (version.startsWith("1.8.0")) {
+				load("nashorn:mozilla_compat.js");
+			}
+			importPackage(java.io);	
+			
+			var username = project.getProperty('sf.username');
+			var password = project.getProperty('sf.password');
+			var server = project.getProperty('sf.server');
+			var tests = project.getProperty('tests');
+			
+			var classes = tests.split(",");
+			
+			var task = project.createTask("antlib:com.salesforce:compileAndTest");
+			task.setUsername(username);
+			task.setPassword(password);
+			task.setServer(server);
+			task.setTrace('false');
+			
+			var testsElement = task.getClass().getClassLoader().loadClass("com.salesforce.ant.CompileAndTest$RunTestsElement").newInstance();
+			task.addRunTests(testsElement);
+			
+			var classClazz = task.getClass().getClassLoader().loadClass("com.salesforce.ant.CompileAndTest$CodeNameElement");
+			for(i in classes){
+				var clazz = classClazz.newInstance();
+				clazz.addText(classes[i]);
+				testsElement.addClass(clazz);
+			}
+			
+			task.execute();
+		 ]]>
+	</script>
+	<record name="RunTest.log" action="stop"/>  
+</target>
+	
 </project>
