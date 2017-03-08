@@ -107,7 +107,7 @@
 		<attribute name="sessionId" description="Session Id property."/>
 		<sequential>
 			<!-- Obtain Session Id via Login SOAP service -->
-		    <http url="https://login.salesforce.com/services/Soap/c/30.0" method="POST" failonunexpected="false" entityProperty="loginResponse" statusProperty="loginResponseStatus">
+		    <http url="${sf.server}/services/Soap/c/30.0" method="POST" failonunexpected="false" entityProperty="loginResponse" statusProperty="loginResponseStatus">
 		    	<headers>
 		    		<header name="Content-Type" value="text/xml"/>
 		    		<header name="SOAPAction" value="login"/>
